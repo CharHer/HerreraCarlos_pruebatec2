@@ -22,6 +22,7 @@ Este sistema está destinado a administradores que gestionan los turnos de los c
 - El sistema **no es accesible** desde una red que esté fuera de la empresa, por lo que en la pantalla de login se permite el acceso a una página de creación de usuarios.
 - Se implementan dos tipos de filtrado (un filtrado lógico mediante **lambdas y streams y un filtrado directo desde la BBDD**), por lo que para evitar conflictos se optó por dejar comentado el método en donse se uso *programación funcional* por ser el menos eficiente.
 - Se deja un apartado en el *index* para probar la función de filtrado y para evitar dejar la página principal vacía.
+- No se agregó la eliminación de usuarios, ciudadanos o trámites para proteger la integridad de la BBDD.
 - Por cuestión de tiempo no se pudo implementar el manejo de errores en la mayoría del sistema.
 
 ## Uso del Sistema
@@ -83,68 +84,36 @@ Es un sistema rudimentario ya que requiere tener los Id's del ciudadano, los tra
 ### Diseño del Sistema
 El sistema maneja varias entidades clave:
 
-
-
-### Diagrama de Flujo del Sistema
-
-El usuario solicita un turno, especificando los detalles del trámite y la fecha.
-
-El sistema asigna el turno y lo guarda en la base de datos.
-
-Los administradores pueden editar los turnos, actualizando detalles como el estado.
-
-Los turnos pueden ser consultados en cualquier momento a través de la interfaz.
+![Diagrama de Clases](DiagramaClasesTurnero.drawio.png)
 
 ### Estructura de la Base de Datos
 La base de datos está compuesta por las siguientes tablas:
 
-Turno: Detalles de cada turno.
+- Turno: Detalles de cada turno.
 
-Ciudadano: Información personal de los ciudadanos.
+- Ciudadano: Información personal de los ciudadanos.
 
-Trámite: Diferentes tipos de trámites.
+- Trámite: Diferentes tipos de trámites.
 
-Usuario: Datos de los usuarios administradores del sistema.
+- Usuario: Datos de los usuarios administradores del sistema.
 
 
 ### Implementación de Funcionalidades
-Creación de Turnos Asignar un número de turno, una descripción del trámite, fecha y estado, almacenándolos en la base de datos y asociándolos con un ciudadano, trámite y usuario.
+Creación de Turnos Asignar un número de turno, una especificación del tipo de trámite, fecha y estado, almacenándolos en la base de datos y asociándolos con un ciudadano, trámite y usuario.
 
 #### java
-public void crearTurno(String numTurno, String descripTramite, String fechaAgendada, String estado, Long ciudadanoId, Long tramiteId, Long usuarioId) {
-    // Recupera las entidades relacionadas
-    Ciudadano ciudadano = controlPersis.traerCiudadanoId(ciudadanoId);
-    Tramite tramite = controlPersis.traerTramiteId(tramiteId);
-    Usuario usuario = controlPersis.traerUsuarioId(usuarioId);
 
-    Turno turn = new Turno();
-    turn.setNumeroTurno(numTurno);
-    turn.setDescripcionTramite(descripTramite);
-    turn.setFechaAgendada(fechaAgendada);
-    turn.setEstado(estado);
-    turn.setCiudadano(ciudadano);
-    turn.setTramite(tramite);
-    turn.setUsuario(usuario);
-    
-    controlPersis.crearTurno(turn);
-}
-Edición de Turnos Actualizar estado, descripción del trámite y otros detalles, manteniendo la integridad de las relaciones.
 
-java
-public void editarTurno(Turno turn) {
-    controlPersis.editarTurno(turn);
-}
-Consulta de Turnos por Estado Filtrar los turnos por su estado (Ej. "Esperando", "Atendido").
 
-java
-public List<Turno> buscarPorEstado(String busquedaEstado) {
-    return controlPersis.buscarPorEstado(busquedaEstado);
-}
 
-## Consideraciones de Seguridad
+
+
+
+
+
+### Consideraciones de Seguridad
 Autenticación y autorización: Uso de correos y contraseñas para acceso a funcionalidades.
 
-Protección de datos: Seguridad de datos sensibles como contraseñas y detalles personales en la base de datos.
 
-### Conclusiones
-El sistema de gestión de turnos cumple con los requisitos iniciales y está basado en una arquitectura que facilita su mantenimiento y extensión. La persistencia de datos es eficiente gracias a JPA, y el sistema ha demostrado ser fiable en las pruebas.
+## Conclusiones
+El sistema de gestión de turnos cumple de forma muy básica con los requisitos iniciales y está basado en una arquitectura que facilita su mantenimiento y extensión. La persistencia de datos es eficiente gracias a JPA. Aún se pueden seguir añadiendo funcionalidades como edición de ciudadanos y trámites, así como su eliminación.
