@@ -31,12 +31,14 @@ Es un sistema rudimentario ya que requiere tener los Id's del ciudadano, los tra
 2. Se tienen dos usuarios creados con acceso al sistema, pero se pueden crear más.
 3. Se tienen que asignar los Id's de forma manual en el formulario de alta de turno. Ya se tienen creados algunos ciudadanos y tramites, pero se pueden crear más en caso de requerirlo.
   *Usuarios
+   
 | ID  | EMAIL                         | PASSWORD |
 |-----|-------------------------------|----------|
 | 1   | admin@ningunlugar.gob.com     | 123456   |
 | 2   | holakase@ningunlugar.gob.com  | Hola123  |
    
   *Ciudadanos
+  
 | ID  | NOMBRE   | APELLIDO         | EMAILCONTACTO                      | TELEFONO       |
 |-----|----------|------------------|------------------------------------|----------------|
 | 1   | Carlos   | Herrera          | estoesunaprueba@mail.com           | 5464124578     |
@@ -46,6 +48,7 @@ Es un sistema rudimentario ya que requiere tener los Id's del ciudadano, los tra
 | 5   | Coraje   | el Perro Cobarde | estupidoperro@mehicistevermal.com  | 87953548231    |
 
   *Tramites
+  
 | ID  | TIPODETRAMITE |
 |-----|---------------|
 | 1   | Queja         |
