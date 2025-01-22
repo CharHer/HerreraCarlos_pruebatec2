@@ -17,15 +17,15 @@
 
     <div class="col-sm-6 mb-3">
         <input type="text" class="form-control form-control-user" id="numero_turno" name="numero_turno"
-               placeholder="Numero de turno (T-01)" value="<%= turn.getNumeroTurno() %>">
+               placeholder="Numero de turno (T-01)" value="<%= turn.getNumeroTurno()%>">
     </div>
     <div class="col-sm-6 mb-3">
         <input type="text" class="form-control form-control-user" id="descripción_tamite" name="descripción_tamite"
-               placeholder="Descripción de trámite (Queja, reporte, consulta,etc.)" value="<%= turn.getDescripcionTramite() %>">
+               placeholder="Descripción de trámite (Queja, reporte, consulta,etc.)" value="<%= turn.getDescripcionTramite()%>">
     </div>
     <div class="col-sm-6 mb-3">
         <input type="text" class="form-control form-control-user" id="fecha" name="fecha"
-               placeholder="Fecha(aaaa-mm-dd)" value="<%= turn.getFechaAgendada() %>">
+               placeholder="Fecha(aaaa-mm-dd)" value="<%= turn.getFechaAgendada()%>">
     </div>
     <div class="col-sm-6 mb-3">
         <input type="text" class="form-control form-control-user" id="estado" name="estado"

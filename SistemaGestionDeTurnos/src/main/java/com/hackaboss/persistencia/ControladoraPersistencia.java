@@ -30,6 +30,18 @@ public class ControladoraPersistencia {
         turnJpa.create(turn);
     }
     
+    public Ciudadano traerCiudadanoId(Long ciudadanoId) {
+        return ciuJpa.findCiudadano(ciudadanoId);
+    }
+
+    public Tramite traerTramiteId(Long tramiteId) {
+        return tramJpa.findTramite(tramiteId);
+    }
+
+    public Usuario traerUsuarioId(Long usuarioId) {
+        return usuJpa.findUsuario(usuarioId);
+    }
+    
     public List<Turno> getTurnos() {
         return turnJpa.findTurnoEntities();
     }
@@ -70,17 +82,7 @@ public class ControladoraPersistencia {
         return turnJpa.findTurnoByEstado(busquedaEstado);
     }
 
-    public Ciudadano traerCiudadanoId(Long ciudadanoId) {
-        return ciuJpa.findCiudadano(ciudadanoId);
-    }
-
-    public Tramite traerTramiteId(Long tramiteId) {
-        return tramJpa.findTramite(tramiteId);
-    }
-
-    public Usuario traerUsuarioId(Long usuarioId) {
-        return usuJpa.findUsuario(usuarioId);
-    }
+    
 
 
 }

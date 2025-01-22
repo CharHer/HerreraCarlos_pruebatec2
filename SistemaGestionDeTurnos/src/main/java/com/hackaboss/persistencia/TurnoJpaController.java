@@ -7,6 +7,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import com.hackaboss.logica.Ciudadano;
+import com.hackaboss.logica.Tramite;
 import com.hackaboss.logica.Turno;
 import com.hackaboss.logica.Usuario;
 import com.hackaboss.persistencia.exceptions.NonexistentEntityException;
@@ -64,56 +65,72 @@ public class TurnoJpaController implements Serializable {
     }
 
     public void edit(Turno turno) throws NonexistentEntityException, Exception {
-        EntityManager em = null;
-        try {
-            em = getEntityManager();
-            em.getTransaction().begin();
-            Turno persistentTurno = em.find(Turno.class, turno.getId());
-            Ciudadano ciudadanoOld = persistentTurno.getCiudadano();
-            Ciudadano ciudadanoNew = turno.getCiudadano();
-            Usuario usuarioOld = persistentTurno.getUsuario();
-            Usuario usuarioNew = turno.getUsuario();
-            if (ciudadanoNew != null) {
-                ciudadanoNew = em.getReference(ciudadanoNew.getClass(), ciudadanoNew.getId());
-                turno.setCiudadano(ciudadanoNew);
-            }
-            if (usuarioNew != null) {
-                usuarioNew = em.getReference(usuarioNew.getClass(), usuarioNew.getId());
-                turno.setUsuario(usuarioNew);
-            }
-            turno = em.merge(turno);
-            if (ciudadanoOld != null && !ciudadanoOld.equals(ciudadanoNew)) {
-                ciudadanoOld.getListaTurnos().remove(turno);
-                ciudadanoOld = em.merge(ciudadanoOld);
-            }
-            if (ciudadanoNew != null && !ciudadanoNew.equals(ciudadanoOld)) {
-                ciudadanoNew.getListaTurnos().add(turno);
-                ciudadanoNew = em.merge(ciudadanoNew);
-            }
-            if (usuarioOld != null && !usuarioOld.equals(usuarioNew)) {
-                usuarioOld.getListaTurnos().remove(turno);
-                usuarioOld = em.merge(usuarioOld);
-            }
-            if (usuarioNew != null && !usuarioNew.equals(usuarioOld)) {
-                usuarioNew.getListaTurnos().add(turno);
-                usuarioNew = em.merge(usuarioNew);
-            }
-            em.getTransaction().commit();
-        } catch (Exception ex) {
-            String msg = ex.getLocalizedMessage();
-            if (msg == null || msg.length() == 0) {
-                Long id = turno.getId();
-                if (findTurno(id) == null) {
-                    throw new NonexistentEntityException("The turno with id " + id + " no longer exists.");
-                }
-            }
-            throw ex;
-        } finally {
-            if (em != null) {
-                em.close();
+    EntityManager em = null;
+    try {
+        em = getEntityManager();
+        em.getTransaction().begin();
+    
+        Turno persistentTurno = em.find(Turno.class, turno.getId());
+
+        Ciudadano ciudadanoOld = persistentTurno.getCiudadano();
+        Ciudadano ciudadanoNew = turno.getCiudadano();
+        Usuario usuarioOld = persistentTurno.getUsuario();
+        Usuario usuarioNew = turno.getUsuario();
+        
+        Tramite tramiteOld = persistentTurno.getTramite();
+        Tramite tramiteNew = turno.getTramite();
+  
+        if (tramiteNew != null && !tramiteNew.equals(tramiteOld)) {
+            tramiteNew = em.getReference(tramiteNew.getClass(), tramiteNew.getId());
+            turno.setTramite(tramiteNew);
+        }
+
+        if (ciudadanoNew != null) {
+            ciudadanoNew = em.getReference(ciudadanoNew.getClass(), ciudadanoNew.getId());
+            turno.setCiudadano(ciudadanoNew);
+        }
+       
+        if (usuarioNew != null) {
+            usuarioNew = em.getReference(usuarioNew.getClass(), usuarioNew.getId());
+            turno.setUsuario(usuarioNew);
+        }
+
+        turno = em.merge(turno);
+
+        if (ciudadanoOld != null && !ciudadanoOld.equals(ciudadanoNew)) {
+            ciudadanoOld.getListaTurnos().remove(turno);
+            ciudadanoOld = em.merge(ciudadanoOld);
+        }
+        if (ciudadanoNew != null && !ciudadanoNew.equals(ciudadanoOld)) {
+            ciudadanoNew.getListaTurnos().add(turno);
+            ciudadanoNew = em.merge(ciudadanoNew);
+        }
+        
+        if (usuarioOld != null && !usuarioOld.equals(usuarioNew)) {
+            usuarioOld.getListaTurnos().remove(turno);
+            usuarioOld = em.merge(usuarioOld);
+        }
+        if (usuarioNew != null && !usuarioNew.equals(usuarioOld)) {
+            usuarioNew.getListaTurnos().add(turno);
+            usuarioNew = em.merge(usuarioNew);
+        }
+
+        em.getTransaction().commit();
+    } catch (Exception ex) {
+        String msg = ex.getLocalizedMessage();
+        if (msg == null || msg.length() == 0) {
+            Long id = turno.getId();
+            if (findTurno(id) == null) {
+                throw new NonexistentEntityException("The turno with id " + id + " no longer exists.");
             }
         }
+        throw ex;
+    } finally {
+        if (em != null) {
+            em.close();
+        }
     }
+}
 
     public void destroy(Long id) throws NonexistentEntityException {
         EntityManager em = null;

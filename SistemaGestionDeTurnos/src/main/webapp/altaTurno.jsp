@@ -10,38 +10,51 @@
 
 <form class="user" action="TurnosSv" method="POST">
 
-    <!-- Campo para número de turno -->
+        <!-- Campo de Número de Turno -->
     <div class="col-sm-6 mb-3">
         <input type="text" class="form-control form-control-user" id="numero_turno" name="numero_turno"
-               placeholder="Numero de turno (T-01)" required>
+               placeholder="Número de turno (t01)" required />
     </div>
 
-    <!-- Campo para descripción del trámite -->
+    <!-- Campo de Descripción del Trámite -->
     <div class="col-sm-6 mb-3">
         <input type="text" class="form-control form-control-user" id="descripcion_tramite" name="descripcion_tramite"
-               placeholder="Descripción de trámite (Queja, reporte, consulta, etc.)" required>
+               placeholder="Descripción de trámite (Queja, Pago, Consulta, Reporte)" required />
     </div>
 
-    <!-- Campo para fecha -->
+    <!-- Campo de Fecha Agendada -->
     <div class="col-sm-6 mb-3">
-        <input type="text" class="form-control form-control-user" id="fecha" name="fecha"
-               placeholder="Fecha (aaaa-mm-dd)" required>
+        <input type="date" class="form-control form-control-user" id="fecha" name="fecha"
+               placeholder="Fecha (aaaa-mm-dd)" required />
     </div>
 
-    <!-- Campo para estado -->
+    <!-- Campo de Estado -->
     <div class="col-sm-6 mb-3">
         <input type="text" class="form-control form-control-user" id="estado" name="estado"
-               placeholder="Estado (Espera/Atendido)" required>
+               placeholder="Estado (Espera/Atendido)" required />
     </div>
 
+    <!-- Campo de ID del Ciudadano -->
+    <div class="col-sm-6 mb-3">
+        <input type="text" class="form-control form-control-user" id="ciudadano_id" name="ciudadano_id"
+               placeholder="ID del Ciudadano" required />
+    </div>
 
-    
+    <!-- Campo de ID del Trámite -->
+    <div class="col-sm-6 mb-3">
+        <input type="text" class="form-control form-control-user" id="tramite_id" name="tramite_id"
+               placeholder="ID del Trámite" required />
+    </div>
 
-    <!-- Botón para enviar el formulario -->
+    <!-- Campo de ID del Usuario -->
+    <div class="col-sm-6 mb-3">
+        <input type="text" class="form-control form-control-user" id="usuario_id" name="usuario_id"
+               placeholder="ID del Usuario" required />
+    </div>
+
+    <!-- Botón de Enviar -->
     <button class="btn btn-primary btn-user btn-block" type="submit"> 
         Crear Turno
     </button>
-
-</form>
 
 <%@include file="components/bodyfinal.jsp"%>

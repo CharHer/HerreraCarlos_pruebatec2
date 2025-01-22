@@ -2,11 +2,8 @@
 package com.hackaboss.servlets;
 
 
-import com.hackaboss.logica.Ciudadano;
 import com.hackaboss.logica.ControladoraLogica;
-import com.hackaboss.logica.Tramite;
 import com.hackaboss.logica.Turno;
-import com.hackaboss.logica.Usuario;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,16 +47,28 @@ public class TurnosSv extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+     
         String numTurno = request.getParameter("numero_turno");
-        String descripTramite = request.getParameter("descripción_tamite");
+        String descripTramite = request.getParameter("descripcion_tramite");
         String fechaAgendada = request.getParameter("fecha");
         String estado = request.getParameter("estado");
+
         
-        control.crearTurno(numTurno, descripTramite, fechaAgendada, estado);
         
+        
+        // Obtener los IDs de las entidades relacionadas
+        Long ciudadanoId = Long.parseLong(request.getParameter("ciudadano_id"));
+        Long tramiteId = Long.parseLong(request.getParameter("tramite_id"));
+        Long usuarioId = Long.parseLong(request.getParameter("usuario_id"));
+
+        control.crearTurno(numTurno, descripTramite, fechaAgendada, estado, ciudadanoId, tramiteId, usuarioId);
+        
+        
+        
+        
+
         response.sendRedirect("index.jsp");
-        
+
     }
 
     

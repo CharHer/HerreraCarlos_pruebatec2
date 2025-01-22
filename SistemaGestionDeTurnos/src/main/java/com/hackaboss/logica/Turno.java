@@ -36,7 +36,8 @@ public class Turno implements Serializable {
     public Turno() {
     }
 
-    public Turno(String numeroTurno, String descripcionTramite, String fechaAgendada, String estado, Ciudadano ciudadano, Tramite tramite, Usuario usuario) {
+    public Turno(String numeroTurno, String descripcionTramite, String fechaAgendada, String estado,
+                  Ciudadano ciudadano, Tramite tramite, Usuario usuario) {
         this.numeroTurno = numeroTurno;
         this.descripcionTramite = descripcionTramite;
         this.fechaAgendada = fechaAgendada;
@@ -46,23 +47,7 @@ public class Turno implements Serializable {
         this.usuario = usuario;
     }
 
-    // Getters y setters actualizados
-    public Ciudadano getCiudadano() {
-        return ciudadano;
-    }
-
-    public void setCiudadano(Ciudadano ciudadano) {
-        this.ciudadano = ciudadano;
-    }
-
-    public Tramite getTramite() {
-        return tramite;
-    }
-
-    public void setTramite(Tramite tramite) {
-        this.tramite = tramite;
-    }
-
+    // Getters y Setters
     public Long getId() {
         return id;
     }
@@ -95,7 +80,29 @@ public class Turno implements Serializable {
         this.fechaAgendada = fechaAgendada;
     }
 
-    
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public Ciudadano getCiudadano() {
+        return ciudadano;
+    }
+
+    public void setCiudadano(Ciudadano ciudadano) {
+        this.ciudadano = ciudadano;
+    }
+
+    public Tramite getTramite() {
+        return tramite;
+    }
+
+    public void setTramite(Tramite tramite) {
+        this.tramite = tramite;
+    }
 
     public Usuario getUsuario() {
         return usuario;
@@ -105,12 +112,6 @@ public class Turno implements Serializable {
         this.usuario = usuario;
     }
 
-    public String getEstado() {
-        return estado;
-    }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
 }
 

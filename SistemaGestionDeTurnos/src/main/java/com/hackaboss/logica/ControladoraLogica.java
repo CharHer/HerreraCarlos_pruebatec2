@@ -12,7 +12,7 @@ public class ControladoraLogica {
     ControladoraPersistencia controlPersis = new ControladoraPersistencia();
     
     public void crearUsuario (String email, String Password){
-        Usuario usu = new Usuario(); //NO ESTOY SEGURO
+        Usuario usu = new Usuario();
         usu.setEmail(email);
         usu.setPassword(Password);
         
@@ -20,15 +20,24 @@ public class ControladoraLogica {
         
     }
     
-    public void crearTurno(String numTurno, String descripTramite, String fechaAgendada, String estado) {
+    public void crearTurno(String numTurno, String descripTramite, String fechaAgendada, String estado, Long ciudadanoId, Long tramiteId, Long usuarioId) {
+        // Recuperar las entidades relacionadas
+        Ciudadano ciudadano = controlPersis.traerCiudadanoId(ciudadanoId);
+        Tramite tramite = controlPersis.traerTramiteId(tramiteId);
+        Usuario usuario = controlPersis.traerUsuarioId(usuarioId);
+
+        // Crear el objeto Turno
         Turno turn = new Turno();
         turn.setNumeroTurno(numTurno);
         turn.setDescripcionTramite(descripTramite);
         turn.setFechaAgendada(fechaAgendada);
         turn.setEstado(estado);
+        turn.setCiudadano(ciudadano);
+        turn.setTramite(tramite);
+        turn.setUsuario(usuario);
         
+        // Delegar la creación del turno a la ControladoraPersistencia
         controlPersis.crearTurno(turn);
-        
     }
 
     public boolean validarAcceso(String email, String password) {
@@ -111,13 +120,5 @@ public class ControladoraLogica {
         return controlPersis.traerUsuarioId(usuarioId);
         
     }
-
-    
-
-
-
-    
-
-    
 
 }
