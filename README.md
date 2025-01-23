@@ -140,5 +140,5 @@ Usuario findUserByEmail(String email) {
 ### Consideraciones de Seguridad
 Autenticación y autorización: Uso de correos y contraseñas para controlar el acceso a funcionalidades.
 
-##Conclusiones
-El sistema de gestión de turnos cumple de forma muy básica con los requisitos iniciales y está basado en una arquitectura que facilita su mantenimiento y extensión. La persistencia de datos es eficiente gracias a JPA. Aún se pueden seguir añadiendo funcionalidades como la edición de ciudadanos y trámites, así como su eliminación.
+## Conclusiones
+El sistema de gestión de turnos cumple de forma muy básica con los requisitos iniciales y está basado en una arquitectura que facilita su mantenimiento y extensión. Aún se pueden seguir añadiendo funcionalidades como la edición de ciudadanos y trámites, así como su eliminación; el uso de menús desplegables para evitar la introducción de errores por parte del Usuario; y los roles del Usuario para manejar permisos.
