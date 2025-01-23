@@ -18,7 +18,7 @@ public class ControladoraPersistencia {
         CiudadanoJpaController ciuJpa = new CiudadanoJpaController();
         TramiteJpaController tramJpa = new TramiteJpaController();
 
-    public void crearUsuario(Usuario usu) { //NO ESTOY SEGURO, tal vez implementar la creacion de usuario en el login
+    public void crearUsuario(Usuario usu) { 
         usuJpa.create(usu);
     }
 
@@ -34,14 +34,6 @@ public class ControladoraPersistencia {
         return ciuJpa.findCiudadano(ciudadanoId);
     }
 
-    public Tramite traerTramiteId(Long tramiteId) {
-        return tramJpa.findTramite(tramiteId);
-    }
-
-    public Usuario traerUsuarioId(Long usuarioId) {
-        return usuJpa.findUsuario(usuarioId);
-    }
-    
     public List<Turno> getTurnos() {
         return turnJpa.findTurnoEntities();
     }
@@ -82,7 +74,13 @@ public class ControladoraPersistencia {
         return turnJpa.findTurnoByEstado(busquedaEstado);
     }
 
-    
+    public Tramite traerTramiteId(Long tramiteId) {
+        return tramJpa.findTramite(tramiteId);
+    }
+
+    public Usuario traerUsuarioId(Long usuarioId) {
+        return usuJpa.findUsuario(usuarioId);
+    }
 
 
 }

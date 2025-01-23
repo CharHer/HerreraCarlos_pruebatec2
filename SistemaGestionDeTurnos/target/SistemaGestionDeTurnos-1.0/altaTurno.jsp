@@ -10,7 +10,7 @@
 
 <form class="user" action="TurnosSv" method="POST">
 
-        <!-- Campo de Número de Turno -->
+    <!-- Campo de Número de Turno -->
     <div class="col-sm-6 mb-3">
         <input type="text" class="form-control form-control-user" id="numero_turno" name="numero_turno"
                placeholder="Número de turno (t01)" required />
@@ -57,4 +57,4 @@
         Crear Turno
     </button>
 
-<%@include file="components/bodyfinal.jsp"%>
+    <%@include file="components/bodyfinal.jsp"%>

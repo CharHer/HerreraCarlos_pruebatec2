@@ -20,26 +20,7 @@ public class ControladoraLogica {
         
     }
     
-    public void crearTurno(String numTurno, String descripTramite, String fechaAgendada, String estado, Long ciudadanoId, Long tramiteId, Long usuarioId) {
-        // Recuperar las entidades relacionadas
-        Ciudadano ciudadano = controlPersis.traerCiudadanoId(ciudadanoId);
-        Tramite tramite = controlPersis.traerTramiteId(tramiteId);
-        Usuario usuario = controlPersis.traerUsuarioId(usuarioId);
-
-        // Crear el objeto Turno
-        Turno turn = new Turno();
-        turn.setNumeroTurno(numTurno);
-        turn.setDescripcionTramite(descripTramite);
-        turn.setFechaAgendada(fechaAgendada);
-        turn.setEstado(estado);
-        turn.setCiudadano(ciudadano);
-        turn.setTramite(tramite);
-        turn.setUsuario(usuario);
-        
-        // Delegar la creación del turno a la ControladoraPersistencia
-        controlPersis.crearTurno(turn);
-    }
-
+    
     public boolean validarAcceso(String email, String password) {
         Usuario usu = controlPersis.buscarUsuario(email);
 
@@ -52,8 +33,24 @@ public class ControladoraLogica {
         }
         return false;
     }
-
     
+    public void crearTurno(String numTurno, String descripTramite, String fechaAgendada, String estado, Long ciudadanoId, Long tramiteId, Long usuarioId) {
+        
+        Ciudadano ciudadano = controlPersis.traerCiudadanoId(ciudadanoId);
+        Tramite tramite = controlPersis.traerTramiteId(tramiteId);
+        Usuario usuario = controlPersis.traerUsuarioId(usuarioId);
+
+        Turno turn = new Turno();
+        turn.setNumeroTurno(numTurno);
+        turn.setDescripcionTramite(descripTramite);
+        turn.setFechaAgendada(fechaAgendada);
+        turn.setEstado(estado);
+        turn.setCiudadano(ciudadano);
+        turn.setTramite(tramite);
+        turn.setUsuario(usuario);
+        
+        controlPersis.crearTurno(turn);
+    }
 
     public List<Turno> getTurnos() {
         return controlPersis.getTurnos();
@@ -91,7 +88,7 @@ public class ControladoraLogica {
 
     public List<Turno> buscarPorEstado(String busquedaEstado) {
         
-        //filtrado desde la logica con lambdas y streams
+        //Filtrado desde la logica con lambdas y streams
         
         /*
         return controlPersis.traerTurnos().stream() 
@@ -99,7 +96,7 @@ public class ControladoraLogica {
         .collect(Collectors.toList());
         */
         
-        //filtrado desde la BD
+        //Filtrado desde la BD
         
         List<Turno> turnosCoincidentes = new ArrayList<>();
         turnosCoincidentes = controlPersis.buscarPorEstado(busquedaEstado);

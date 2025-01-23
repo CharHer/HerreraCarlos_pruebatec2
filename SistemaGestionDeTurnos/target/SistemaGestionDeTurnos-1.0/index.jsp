@@ -14,16 +14,16 @@
 
     <!-- Búsqueda por estado-->
     <div>
-    <h3 class="mt-4">Búsqueda</h3>
-    <form action="BuscarTurnosSv" method="GET">
-        <div class="form-group">
-            <label for="busquedaPorEstado" >Buscar por Estado:</label>
-            <input type="text" class="form-control form-control-sm" id="busquedaEstado" name="busquedaEstado" style="max-width: 300px;" placeholder="Espera">
-        </div> 
-        
-        <button type="submit" class="btn btn-primary btn-sm">Buscar</button>  
-    </form>
-</div>
+        <h3 class="mt-4">Búsqueda</h3>
+        <form action="BuscarTurnosSv" method="GET">
+            <div class="form-group">
+                <label for="busquedaPorEstado" >Buscar por Estado:</label>
+                <input type="text" class="form-control form-control-sm" id="busquedaEstado" name="busquedaEstado" style="max-width: 300px;" placeholder="Espera">
+            </div> 
+
+            <button type="submit" class="btn btn-primary btn-sm">Buscar</button>  
+        </form>
+    </div>
 
     <div class="results-table mt-4">
 
@@ -38,11 +38,10 @@
                 </tr>    
             </thead>
             <tbody>
-                <%                   
-                    List<Turno> listaTurnos = (List) request.getSession().getAttribute("listaTurnos");
+                <%  List<Turno> listaTurnos = (List) request.getSession().getAttribute("listaTurnos");
                     if (listaTurnos != null) {
 
-                        for (Turno turn:listaTurnos) { 
+                        for (Turno turn : listaTurnos) {
                 %>
                 <tr>
                     <td> <%=turn.getNumeroTurno()%> </td>
@@ -53,7 +52,7 @@
                 </tr>      
                 <% } %>
             </tbody>  
-            <% } %>
+            <% }%>
         </table> 
     </div>
 

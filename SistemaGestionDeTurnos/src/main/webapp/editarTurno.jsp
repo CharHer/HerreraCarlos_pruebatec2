@@ -9,8 +9,8 @@
 <h1>Edición de turnos</h1>
 <p>En este apartado para actualizar un turno</p>
 
-<%
-    Turno turn = (Turno)request.getSession().getAttribute("turnEditar");
+<%    
+    Turno turn = (Turno) request.getSession().getAttribute("turnEditar");
 %>
 
 <form class="user" action="EditarTurnosSv" method="POST">

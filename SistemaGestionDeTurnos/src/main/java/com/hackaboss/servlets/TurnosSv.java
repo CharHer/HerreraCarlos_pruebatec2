@@ -62,10 +62,6 @@ public class TurnosSv extends HttpServlet {
         Long usuarioId = Long.parseLong(request.getParameter("usuario_id"));
 
         control.crearTurno(numTurno, descripTramite, fechaAgendada, estado, ciudadanoId, tramiteId, usuarioId);
-        
-        
-        
-        
 
         response.sendRedirect("index.jsp");
 
