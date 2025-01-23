@@ -103,7 +103,7 @@ Creación de Turnos Asignar un número de turno, una especificación del tipo de
 
 #### Código
 
-Seguridad: 
+##### Seguridad
 
 Se introduce el siguiente código en el componente *bodyinicio* para mantener protegido el sistema de personas que no tengan credenciales de usuario.
 
@@ -115,33 +115,30 @@ Se introduce el siguiente código en el componente *bodyinicio* para mantener pr
         response.sendRedirect("login.jsp");
     }
 %>
+```
 
+#### Funcionalidad
+Se introduce este fragmento para crear un filtro personalizado usando JPQL (Java Persistence Query Language).
 
-Funcionalidad: Se introduce este fragmento para crear un filtro presonalizado usando JPQL (Java Persistence Query Language).
-
-```jsp
+```jpql
 Usuario findUserByEmail(String email) {
-        EntityManager em =getEntityManager();
-        
-        try {
-            String consulta = "SELECT usu FROM Usuario usu WHERE usu.email = :email";
-            Query query = em.createQuery(consulta);
-            query.setParameter("email",email);
-            return (Usuario)query.getSingleResult();
-        } catch(NoResultException e) {
-                return null;
-                }
-        
-        finally {
-            em.close();
-        }
+    EntityManager em = getEntityManager();
+    
+    try {
+        String consulta = "SELECT usu FROM Usuario usu WHERE usu.email = :email";
+        Query query = em.createQuery(consulta);
+        query.setParameter("email", email);
+        return (Usuario) query.getSingleResult();
+    } catch (NoResultException e) {
+        return null;
+    } finally {
+        em.close();
     }
-
-
+}
+```
 
 ### Consideraciones de Seguridad
-Autenticación y autorización: Uso de correos y contraseñas para acceso a funcionalidades.
+Autenticación y autorización: Uso de correos y contraseñas para controlar el acceso a funcionalidades.
 
-
-## Conclusiones
-El sistema de gestión de turnos cumple de forma muy básica con los requisitos iniciales y está basado en una arquitectura que facilita su mantenimiento y extensión. La persistencia de datos es eficiente gracias a JPA. Aún se pueden seguir añadiendo funcionalidades como edición de ciudadanos y trámites, así como su eliminación.
+##Conclusiones
+El sistema de gestión de turnos cumple de forma muy básica con los requisitos iniciales y está basado en una arquitectura que facilita su mantenimiento y extensión. La persistencia de datos es eficiente gracias a JPA. Aún se pueden seguir añadiendo funcionalidades como la edición de ciudadanos y trámites, así como su eliminación.
