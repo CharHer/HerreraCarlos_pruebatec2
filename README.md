@@ -26,7 +26,7 @@ Este sistema está destinado a administradores que gestionan los turnos de los c
 - Por cuestión de tiempo no se pudo implementar el manejo de errores en la mayoría del sistema.
 
 ## Uso del Sistema
-Es un sistema rudimentario ya que requiere tener los Id's del ciudadano, los tramites y los usuarios para que puedan ser relacionados en la BBDD.
+Es un sistema rudimentario ya que requiere tener los *id's* del ciudadano, los tramites y los usuarios para que puedan ser relacionados en la BBDD.
 
 1. Para levantar el Proyecto en el servidor se tienen las llaves -> user: **carlosH** y password: **Princesa667**.
 2. Se tienen dos usuarios creados con acceso al sistema, pero se pueden crear más.
