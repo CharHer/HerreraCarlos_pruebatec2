@@ -20,7 +20,7 @@ Este sistema está destinado a administradores que gestionan los turnos de los c
 ### Supuestos
 - Se eligió la palabra **turno** para referirse a una "cita", en función de que la BBDD se llama *turnero*.
 - El sistema **no es accesible** desde una red que esté fuera de la empresa, por lo que en la pantalla de login se permite el acceso a una página de creación de usuarios.
-- Se implementan dos tipos de filtrado (un filtrado lógico mediante **lambdas y streams y un filtrado directo desde la BBDD**), por lo que para evitar conflictos se optó por dejar comentado el método en donse se uso *programación funcional* por ser el menos eficiente.
+- Se implementan dos tipos de filtrado (un filtrado lógico mediante **lambdas y streams y un filtrado directo desde la BBDD**), por lo que para evitar conflictos se optó por dejar comentado el método en donde se utilizó *programación funcional* por ser el menos eficiente.
 - Se deja un apartado en el *index* para probar la función de filtrado y para evitar dejar la página principal vacía.
 - No se agregó la eliminación de usuarios, ciudadanos o trámites para proteger la integridad de la BBDD.
 - Por cuestión de tiempo no se pudo implementar el manejo de errores en la mayoría del sistema.
@@ -101,13 +101,41 @@ La base de datos está compuesta por las siguientes tablas:
 ### Implementación de Funcionalidades
 Creación de Turnos Asignar un número de turno, una especificación del tipo de trámite, fecha y estado, almacenándolos en la base de datos y asociándolos con un ciudadano, trámite y usuario.
 
-#### java
+#### Código
+
+Seguridad: 
+
+Se introduce el siguiente código en el componente *bodyinicio* para mantener protegido el sistema de personas que no tengan credenciales de usuario.
+
+```jsp
+<%
+    HttpSession miSesion = request.getSession();
+    String usuario = (String) miSesion.getAttribute("email");
+    if (usuario == null) {
+        response.sendRedirect("login.jsp");
+    }
+%>
 
 
+Funcionalidad: Se introduce este fragmento para crear un filtro presonalizado usando JPQL (Java Persistence Query Language).
 
-
-
-
+```jsp
+Usuario findUserByEmail(String email) {
+        EntityManager em =getEntityManager();
+        
+        try {
+            String consulta = "SELECT usu FROM Usuario usu WHERE usu.email = :email";
+            Query query = em.createQuery(consulta);
+            query.setParameter("email",email);
+            return (Usuario)query.getSingleResult();
+        } catch(NoResultException e) {
+                return null;
+                }
+        
+        finally {
+            em.close();
+        }
+    }
 
 
 
