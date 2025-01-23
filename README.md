@@ -28,7 +28,7 @@ Este sistema está destinado a administradores que gestionan los turnos de los c
 ## Uso del Sistema
 Es un sistema rudimentario ya que requiere tener los Id's del ciudadano, los tramites y los usuarios para que puedan ser relacionados en la BBDD.
 
-1. Para levantar el Proyecto en el servidor se tienen las llaves -> Usuer: **carlosH** y Password: **Princesa667**.
+1. Para levantar el Proyecto en el servidor se tienen las llaves -> user: **carlosH** y password: **Princesa667**.
 2. Se tienen dos usuarios creados con acceso al sistema, pero se pueden crear más.
 3. Se tienen que asignar los Id's de forma manual en el formulario de alta de turno. Ya se tienen creados algunos ciudadanos y tramites, pero se pueden crear más en caso de requerirlo.
 
